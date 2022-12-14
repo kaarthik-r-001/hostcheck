@@ -1,0 +1,28 @@
+const http = require("http"); //calling http module built in
+const fs=require("fs");
+
+
+const PORT=4000;
+const hostname="localhost";
+const home=fs.readFileSync("./index.html","utf-8");
+
+const server = http.createServer((req,res)=>{
+    
+    if(req.url==="/"){
+       return res.end(home);
+    }
+    if(req.url==="/about"){
+        return res.end("about na summa va");
+    }
+    if(req.url==="/abo"){
+        return res.end("abo");
+    }
+    else{
+        return res.end("<h1>hello bois<\h1>")
+    }
+    
+})
+
+server.listen(PORT,hostname,()=>{
+    console.log(`server is working on http://${hostname}:${PORT}`);
+});
